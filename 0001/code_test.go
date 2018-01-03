@@ -11,8 +11,8 @@ func TestTwoSum(t *testing.T) {
 		target  int
 		indices []int
 	}{
-		{[]int{2, 7, 11, 15}, 9, []int{1, 0}},
-		{[]int{2, 3, 4, 6}, 6, []int{2, 0}},
+		{[]int{2, 7, 11, 15}, 9, []int{0, 1}},
+		{[]int{2, 3, 4, 6}, 6, []int{0, 2}},
 		{[]int{2, 3, 4, 7}, 8, nil},
 	}
 
