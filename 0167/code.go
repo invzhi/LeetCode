@@ -13,8 +13,24 @@ func twoSum(numbers []int, target int) []int {
 	for i, num := range numbers {
 		if j, ok := m[target-num]; ok {
 			return []int{j + 1, i + 1}
-		} else {
-			m[num] = i
+		}
+		m[num] = i
+	}
+	return nil
+}
+
+func twoSum1(numbers []int, target int) []int {
+	l, r := 0, len(numbers)-1
+
+	for l < r {
+		sum := numbers[l] + numbers[r]
+		switch {
+		case sum < target:
+			l++
+		case sum > target:
+			r--
+		default:
+			return []int{l + 1, r + 1}
 		}
 	}
 	return nil

@@ -5,7 +5,12 @@ import (
 	"testing"
 )
 
-func TestTwoSum(t *testing.T) {
+type twoSumFunc struct {
+	f    func([]int, int) []int
+	name string
+}
+
+func testTwoSum(t *testing.T, f twoSumFunc) {
 	var tests = []struct {
 		numbers []int
 		target  int
@@ -17,9 +22,17 @@ func TestTwoSum(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		indices := twoSum(tt.numbers, tt.target)
+		indices := f.f(tt.numbers, tt.target)
 		if reflect.DeepEqual(indices, tt.indices) == false {
-			t.Errorf("twoSum(%v, %v) return %v, want %v", tt.numbers, tt.target, indices, tt.indices)
+			t.Errorf("%v(%v, %v) return %v, want %v", f.name, tt.numbers, tt.target, indices, tt.indices)
 		}
 	}
+}
+
+func TestTwoSum(t *testing.T) {
+	testTwoSum(t, twoSumFunc{f: twoSum, name: "twoSum"})
+}
+
+func TestTwoSum1(t *testing.T) {
+	testTwoSum(t, twoSumFunc{f: twoSum1, name: "twoSum"})
 }
