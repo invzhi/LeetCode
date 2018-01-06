@@ -1,8 +1,8 @@
 language: go
 
 go:
-  - 1.9
-  - 1.8
+  - 1.8.x
+  - master
 
 script:
-  go list ./... | xargs go test
+  go test ./...
