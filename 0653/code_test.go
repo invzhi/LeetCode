@@ -22,6 +22,9 @@ func insertLeaf(root, leaf *TreeNode) {
 }
 
 func buildTree(nums []int) *TreeNode {
+	if nums == nil {
+		return nil
+	}
 	root := &TreeNode{Val: nums[0]}
 	l := len(nums)
 
@@ -40,6 +43,8 @@ func TestFindTarget(t *testing.T) {
 	}{
 		{[]int{5, 3, 6, 2, 4, 7}, 9, true},
 		{[]int{5, 3, 6, 2, 4, 7}, 28, false},
+		{[]int{5, 3}, 8, true},
+		{nil, 28, false},
 	}
 
 	for _, tt := range tests {

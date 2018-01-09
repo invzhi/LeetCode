@@ -10,6 +10,9 @@ func TestMaxProfit(t *testing.T) {
 		{[]int{4, 6, 7, 2, 8}, 9},
 		{[]int{6, 5, 4, 3, 2}, 0},
 		{[]int{4, 2, 6, 5, 8}, 7},
+		{[]int{1, 9}, 8},
+		{[]int{1}, 0},
+		{nil, 0},
 	}
 
 	for _, tt := range tests {
