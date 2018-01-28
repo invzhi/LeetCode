@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func asList(vs ...int) *ListNode {
+func newList(vs ...int) *ListNode {
 	l := new(ListNode)
 	n := l
 	for _, v := range vs {
@@ -37,14 +37,14 @@ func TestAddTwoNumbers(t *testing.T) {
 		l1, l2 *ListNode
 		sum    *ListNode
 	}{
-		{asList(2, 4, 6), asList(5, 6, 4), asList(7, 0, 1, 1)},
-		{asList(2, 4, 3), asList(5, 6, 4), asList(7, 0, 8)},
-		{asList(2, 4), asList(5, 6, 4), asList(7, 0, 5)},
-		{asList(2), asList(5, 6, 4), asList(7, 6, 4)},
-		{asList(2), asList(5, 6), asList(7, 6)},
-		{asList(2), asList(5), asList(7)},
-		{asList(), asList(5), asList(5)},
-		{asList(), asList(), asList()},
+		{newList(2, 4, 6), newList(5, 6, 4), newList(7, 0, 1, 1)},
+		{newList(2, 4, 3), newList(5, 6, 4), newList(7, 0, 8)},
+		{newList(2, 4), newList(5, 6, 4), newList(7, 0, 5)},
+		{newList(2), newList(5, 6, 4), newList(7, 6, 4)},
+		{newList(2), newList(5, 6), newList(7, 6)},
+		{newList(2), newList(5), newList(7)},
+		{newList(), newList(5), newList(5)},
+		{newList(), newList(), newList()},
 	}
 
 	for _, tt := range tests {
