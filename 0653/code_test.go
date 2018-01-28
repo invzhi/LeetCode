@@ -2,7 +2,7 @@ package leetcode
 
 import "testing"
 
-func insertLeaf(root, leaf *TreeNode) {
+func (root *TreeNode) insert(leaf *TreeNode) {
 	for root != nil {
 		switch {
 		case root.Val < leaf.Val:
@@ -21,16 +21,17 @@ func insertLeaf(root, leaf *TreeNode) {
 	}
 }
 
-func buildTree(nums []int) *TreeNode {
+func newTree(nums []int) *TreeNode {
 	if nums == nil {
 		return nil
 	}
+
 	root := &TreeNode{Val: nums[0]}
 	l := len(nums)
 
 	for i := 1; i < l; i++ {
 		leaf := &TreeNode{Val: nums[i]}
-		insertLeaf(root, leaf)
+		root.insert(leaf)
 	}
 	return root
 }
@@ -48,7 +49,7 @@ func TestFindTarget(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		tree := buildTree(tt.nums)
+		tree := newTree(tt.nums)
 		res := findTarget(tree, tt.target)
 		if res != tt.res {
 			t.Errorf("findTarget(%v, %v) return %v, want %v", tt.nums, tt.target, res, tt.res)
