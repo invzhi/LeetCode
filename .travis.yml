@@ -1,11 +1,10 @@
 language: go
 
 go:
-  - 1.8.x
-  - master
+  - 1.x
 
 script:
-  - bash ./test.sh
+  - go test -v -race -coverprofile=coverage.txt -covermode=atomic ./...
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
