@@ -1,9 +1,9 @@
 package leetcode
 
 import (
-	"bytes"
 	"reflect"
 	"strconv"
+	"strings"
 	"testing"
 )
 
@@ -18,18 +18,19 @@ func newList(vs ...int) *ListNode {
 }
 
 func (l *ListNode) String() string {
-	buf := bytes.NewBufferString("(")
+	var b strings.Builder
+	b.WriteByte('(')
 	if l != nil {
-		buf.WriteString(strconv.Itoa(l.Val))
+		b.WriteString(strconv.Itoa(l.Val))
 		l = l.Next
 	}
 	for l != nil {
-		buf.WriteString(" -> ")
-		buf.WriteString(strconv.Itoa(l.Val))
+		b.WriteString(" -> ")
+		b.WriteString(strconv.Itoa(l.Val))
 		l = l.Next
 	}
-	buf.WriteString(")")
-	return buf.String()
+	b.WriteByte(')')
+	return b.String()
 }
 
 func TestAddTwoNumbers(t *testing.T) {

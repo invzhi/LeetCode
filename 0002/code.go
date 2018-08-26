@@ -11,6 +11,7 @@
 
 package leetcode
 
+// ListNode is node of linked lists
 type ListNode struct {
 	Val  int
 	Next *ListNode
@@ -21,7 +22,6 @@ func addTwoNumbers(l1, l2 *ListNode) *ListNode {
 	n := sum
 
 	var extra int
-
 	for l1 != nil || l2 != nil {
 		n.Next = new(ListNode)
 		n = n.Next
