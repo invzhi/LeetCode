@@ -1,58 +1,76 @@
 package leetcode
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
-func (root *TreeNode) insert(leaf *TreeNode) {
-	for root != nil {
+func (t *TreeNode) String() string {
+	return fmt.Sprintf("tree(%v)", t.values())
+}
+
+func (t *TreeNode) values() []int {
+	if t == nil {
+		return nil
+	}
+	vs := []int{t.Val}
+	vs = append(vs, t.Left.values()...)
+	vs = append(vs, t.Right.values()...)
+	return vs
+}
+
+func (t *TreeNode) insert(n int) {
+	for t != nil {
 		switch {
-		case root.Val < leaf.Val:
-			if root.Right == nil {
-				root.Right = leaf
+		case t.Val < n:
+			if t.Right == nil {
+				t.Right = &TreeNode{Val: n}
 				return
 			}
-			root = root.Right
-		case root.Val > leaf.Val:
-			if root.Left == nil {
-				root.Left = leaf
+			t = t.Right
+		case t.Val > n:
+			if t.Left == nil {
+				t.Left = &TreeNode{Val: n}
 				return
 			}
-			root = root.Left
+			t = t.Left
+		default:
+			return
 		}
 	}
 }
 
-func newTree(nums []int) *TreeNode {
+func newTree(nums ...int) *TreeNode {
 	if nums == nil {
 		return nil
 	}
 
-	root := &TreeNode{Val: nums[0]}
+	root := TreeNode{Val: nums[0]}
 	l := len(nums)
 
 	for i := 1; i < l; i++ {
-		leaf := &TreeNode{Val: nums[i]}
-		root.insert(leaf)
+		root.insert(nums[i])
 	}
-	return root
+	return &root
 }
 
 func TestFindTarget(t *testing.T) {
 	var tests = []struct {
-		nums   []int
+		tree   *TreeNode
 		target int
-		res    bool
+		exist  bool
 	}{
-		{[]int{5, 3, 6, 2, 4, 7}, 9, true},
-		{[]int{5, 3, 6, 2, 4, 7}, 28, false},
-		{[]int{5, 3}, 8, true},
-		{nil, 28, false},
+		{newTree(5, 3, 6, 2, 4, 7), 9, true},
+		{newTree(5, 3, 6, 2, 4, 7), 4, false},
+		{newTree(5, 3), 8, true},
+		{newTree(), 2, false},
+		{nil, 2, false},
 	}
 
 	for _, tt := range tests {
-		tree := newTree(tt.nums)
-		res := findTarget(tree, tt.target)
-		if res != tt.res {
-			t.Errorf("findTarget(%v, %v) return %v, want %v", tt.nums, tt.target, res, tt.res)
+		exist := findTarget(tt.tree, tt.target)
+		if exist != tt.exist {
+			t.Errorf("findTarget(%v, %v) return %v, want %v", tt.tree, tt.target, exist, tt.exist)
 		}
 	}
 }
