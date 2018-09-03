@@ -9,6 +9,7 @@ func TestSingleNumber(t *testing.T) {
 	}{
 		{[]int{2, 2, 1}, 1},
 		{[]int{4, 1, 2, 1, 2}, 4},
+		{nil, 0},
 	}
 
 	for _, tt := range tests {
