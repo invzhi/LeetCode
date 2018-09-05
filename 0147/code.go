@@ -28,12 +28,8 @@ func insertionSortList(head *ListNode) *ListNode {
 		}
 
 		j := pre
-		for j.Next != i && j.Next.Val <= i.Val {
+		for j.Next.Val <= i.Val {
 			j = j.Next
-		}
-		if j.Next == i {
-			prei = i
-			continue
 		}
 		prei.Next = i.Next
 		i.Next = j.Next
