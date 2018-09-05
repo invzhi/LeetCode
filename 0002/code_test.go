@@ -51,7 +51,7 @@ func TestAddTwoNumbers(t *testing.T) {
 	for _, tt := range tests {
 		sum := addTwoNumbers(tt.l1, tt.l2)
 		if reflect.DeepEqual(sum, tt.sum) == false {
-			t.Errorf("addTwoNumbers(%s, %s) return %s, want %s", tt.l1, tt.l2, sum, tt.sum)
+			t.Errorf("addTwoNumbers(%v, %v) return %v, want %v", tt.l1, tt.l2, sum, tt.sum)
 		}
 	}
 }
