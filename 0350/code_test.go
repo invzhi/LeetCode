@@ -2,6 +2,7 @@ package leetcode
 
 import (
 	"reflect"
+	"sort"
 	"testing"
 )
 
@@ -22,6 +23,7 @@ func TestIntersection(t *testing.T) {
 
 	for _, tt := range tests {
 		nums := intersect(tt.nums1, tt.nums2)
+		sort.Ints(nums)
 		if reflect.DeepEqual(nums, tt.intersection) == false {
 			t.Errorf("intersect(%v, %v) return %v, want %v", tt.nums1, tt.nums2, nums, tt.intersection)
 		}
