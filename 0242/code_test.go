@@ -15,6 +15,10 @@ func TestIsAnagram(t *testing.T) {
 			"rat", "car",
 			false,
 		},
+		{
+			"aepr", "paper",
+			false,
+		},
 	}
 
 	for _, tt := range tests {
