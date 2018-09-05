@@ -16,29 +16,17 @@
 
 package leetcode
 
-import "sort"
-
 func intersection(nums1, nums2 []int) []int {
-	sort.Ints(nums1)
-	sort.Ints(nums2)
+	m := make(map[int]struct{})
+	for _, num := range nums1 {
+		m[num] = struct{}{}
+	}
 
-	var (
-		i, j   int
-		l1, l2 = len(nums1), len(nums2)
-		nums   = make([]int, 0)
-	)
-	for i < l1 && j < l2 {
-		switch {
-		case nums1[i] < nums2[j]:
-			i++
-		case nums1[i] > nums2[j]:
-			j++
-		default:
-			if l, v := len(nums), nums1[i]; l == 0 || nums[l-1] != v {
-				nums = append(nums, v)
-			}
-			i++
-			j++
+	nums := make([]int, 0)
+	for _, num := range nums2 {
+		if _, ok := m[num]; ok {
+			nums = append(nums, num)
+			delete(m, num)
 		}
 	}
 	return nums
