@@ -46,10 +46,10 @@ package leetcode
 func romanToInt(s string) int {
 	sl := len(s)
 
-	num := romanToDigit(s[0])
+	num := byteToInt(s[0])
 	pre := num
 	for i := 1; i < sl; i++ {
-		now := romanToDigit(s[i])
+		now := byteToInt(s[i])
 
 		num += now
 		if pre < now {
@@ -61,23 +61,23 @@ func romanToInt(s string) int {
 	return num
 }
 
-func romanToDigit(b byte) int {
+func byteToInt(b byte) int {
+	var i int
 	switch b {
 	case 'I':
-		return 1
+		i = 1
 	case 'V':
-		return 5
+		i = 5
 	case 'X':
-		return 10
+		i = 10
 	case 'L':
-		return 50
+		i = 50
 	case 'C':
-		return 100
+		i = 100
 	case 'D':
-		return 500
+		i = 500
 	case 'M':
-		return 1000
-	default:
-		return 0
+		i = 1000
 	}
+	return i
 }
