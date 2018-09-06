@@ -31,13 +31,12 @@ func merge(nums1 []int, m int, nums2 []int, n int) {
 func position(nums []int, k int, lo, hi int) int {
 	for lo <= hi {
 		mid := lo + (hi-lo)/2
-		switch {
-		case nums[mid] > k:
+		if nums[mid] > k {
 			if lo == hi {
-				return lo
+				break
 			}
 			hi = mid
-		default:
+		} else {
 			lo = mid + 1
 		}
 	}
