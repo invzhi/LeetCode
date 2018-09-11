@@ -6,52 +6,53 @@ import (
 )
 
 func (t *TreeNode) String() string {
-	return fmt.Sprintf("tree(%v)", t.values())
+	return fmt.Sprint(t.values())
 }
 
-func (t *TreeNode) values() []int {
+func (t *TreeNode) values() []interface{} {
 	if t == nil {
 		return nil
 	}
-	vs := []int{t.Val}
-	vs = append(vs, t.Left.values()...)
-	vs = append(vs, t.Right.values()...)
-	return vs
-}
 
-func (t *TreeNode) insert(n int) {
-	for t != nil {
-		switch {
-		case t.Val < n:
-			if t.Right == nil {
-				t.Right = &TreeNode{Val: n}
-				return
-			}
-			t = t.Right
-		case t.Val > n:
-			if t.Left == nil {
-				t.Left = &TreeNode{Val: n}
-				return
-			}
-			t = t.Left
-		default:
-			return
+	vs := []interface{}{t.Val}
+
+	for q := []*TreeNode{t.Left, t.Right}; len(q) > 0; q = q[1:] {
+		if q[0] == nil {
+			vs = append(vs, nil)
+			continue
 		}
+		vs = append(vs, q[0].Val)
+		q = append(q, q[0].Left, q[0].Right)
 	}
+
+	i := len(vs) - 1
+	for vs[i] == nil {
+		i--
+	}
+	return vs[:i+1]
 }
 
-func newTree(nums ...int) *TreeNode {
-	if nums == nil {
+func newTree(vs ...interface{}) *TreeNode {
+	if len(vs) == 0 {
 		return nil
 	}
 
-	root := TreeNode{Val: nums[0]}
-	l := len(nums)
-
-	for i := 1; i < l; i++ {
-		root.insert(nums[i])
+	nodes := make([]*TreeNode, len(vs))
+	for i := len(vs) - 1; i >= 0; i-- {
+		if vs[i] == nil {
+			continue
+		}
+		if v, ok := vs[i].(int); ok {
+			nodes[i] = &TreeNode{Val: v}
+			if 2*i+1 < len(nodes) {
+				nodes[i].Left = nodes[2*i+1]
+			}
+			if 2*i+2 < len(nodes) {
+				nodes[i].Right = nodes[2*i+2]
+			}
+		}
 	}
-	return &root
+	return nodes[0]
 }
 
 func TestFindTarget(t *testing.T) {

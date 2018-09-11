@@ -44,13 +44,12 @@ func newTree(vs ...interface{}) *TreeNode {
 		}
 		if v, ok := vs[i].(int); ok {
 			nodes[i] = &TreeNode{Val: v}
-		}
-
-		if 2*i+1 < len(vs) {
-			nodes[i].Left = nodes[2*i+1]
-		}
-		if 2*i+2 < len(vs) {
-			nodes[i].Right = nodes[2*i+2]
+			if 2*i+1 < len(nodes) {
+				nodes[i].Left = nodes[2*i+1]
+			}
+			if 2*i+2 < len(nodes) {
+				nodes[i].Right = nodes[2*i+2]
+			}
 		}
 	}
 	return nodes[0]
