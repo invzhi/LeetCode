@@ -64,18 +64,18 @@ func TestLevelOrder(t *testing.T) {
 		{
 			newTree(3, 9, 20, nil, nil, 15, 7),
 			[][]int{
-				[]int{3},
-				[]int{9, 20},
-				[]int{15, 7},
+				{3},
+				{9, 20},
+				{15, 7},
 			},
 		},
 		{
 			newTree(1, 2, 2, 3, nil, 3, 3, 4),
 			[][]int{
-				[]int{1},
-				[]int{2, 2},
-				[]int{3, 3, 3},
-				[]int{4},
+				{1},
+				{2, 2},
+				{3, 3, 3},
+				{4},
 			},
 		},
 		{nil, nil},
