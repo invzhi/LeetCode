@@ -35,13 +35,13 @@ func binaryTreePaths(root *TreeNode) []string {
 		return []string{strconv.Itoa(root.Val)}
 	}
 
-	paths := binaryTreePaths(root.Left)
-	paths = append(paths, binaryTreePaths(root.Right)...)
+	v := strconv.Itoa(root.Val)
+	paths := append(binaryTreePaths(root.Left), binaryTreePaths(root.Right)...)
 
 	var b strings.Builder
 	for i, path := range paths {
 		b.Reset()
-		b.WriteString(strconv.Itoa(root.Val))
+		b.WriteString(v)
 		b.WriteString("->")
 		b.WriteString(path)
 
