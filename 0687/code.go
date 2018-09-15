@@ -37,7 +37,7 @@ type TreeNode struct {
 func longestUnivaluePath(root *TreeNode) int {
 	var length int
 
-	var f func(root *TreeNode) int
+	var f func(*TreeNode) int
 	f = func(root *TreeNode) int {
 		if root == nil {
 			return 0
