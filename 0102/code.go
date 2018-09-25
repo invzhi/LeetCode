@@ -26,26 +26,21 @@ type TreeNode struct {
 }
 
 func levelOrder(root *TreeNode) [][]int {
-	if root == nil {
-		return nil
-	}
-	order := dfs(root, nil, 0)
-	return order
+	return dfs(root, nil, 0)
 }
 
 func dfs(root *TreeNode, order [][]int, level int) [][]int {
-	if len(order) <= level {
+	if root == nil {
+		return order
+	}
+
+	if level >= len(order) {
 		order = append(order, nil)
 	}
 	order[level] = append(order[level], root.Val)
 
-	if root.Left != nil {
-		order = dfs(root.Left, order, level+1)
-	}
-
-	if root.Right != nil {
-		order = dfs(root.Right, order, level+1)
-	}
+	order = dfs(root.Left, order, level+1)
+	order = dfs(root.Right, order, level+1)
 
 	return order
 }
