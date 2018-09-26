@@ -2,36 +2,8 @@ package leetcode
 
 import (
 	"reflect"
-	"strconv"
-	"strings"
 	"testing"
 )
-
-func newList(vs ...int) *ListNode {
-	l := new(ListNode)
-	n := l
-	for _, v := range vs {
-		n.Next = &ListNode{Val: v}
-		n = n.Next
-	}
-	return l.Next
-}
-
-func (l *ListNode) String() string {
-	var b strings.Builder
-	b.WriteByte('(')
-	if l != nil {
-		b.WriteString(strconv.Itoa(l.Val))
-		l = l.Next
-	}
-	for l != nil {
-		b.WriteString(" -> ")
-		b.WriteString(strconv.Itoa(l.Val))
-		l = l.Next
-	}
-	b.WriteByte(')')
-	return b.String()
-}
 
 func TestMergeTwoLists(t *testing.T) {
 	var tests = []struct {
