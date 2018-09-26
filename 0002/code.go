@@ -18,8 +18,8 @@ type ListNode struct {
 }
 
 func addTwoNumbers(l1, l2 *ListNode) *ListNode {
-	sum := new(ListNode)
-	n := sum
+	l := new(ListNode)
+	n := l
 
 	var extra int
 	for l1 != nil || l2 != nil {
@@ -38,10 +38,9 @@ func addTwoNumbers(l1, l2 *ListNode) *ListNode {
 		n.Val = extra % 10
 		extra /= 10
 	}
-
 	if extra > 0 {
 		n.Next = &ListNode{Val: extra}
 	}
 
-	return sum.Next
+	return l.Next
 }
