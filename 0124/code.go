@@ -29,10 +29,6 @@ type TreeNode struct {
 }
 
 func maxPathSum(root *TreeNode) int {
-	if root == nil {
-		return 0
-	}
-
 	maxSum := root.Val
 
 	var f func(*TreeNode) int

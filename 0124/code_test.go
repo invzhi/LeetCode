@@ -7,7 +7,6 @@ func TestMaxPathSum(t *testing.T) {
 		tree   *TreeNode
 		maxSum int
 	}{
-		{nil, 0},
 		{newTree(-3), -3},
 		{newTree(1, 2, 3), 6},
 		{newTree(-10, 9, 20, nil, nil, 15, 7), 42},

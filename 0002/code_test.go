@@ -44,8 +44,6 @@ func TestAddTwoNumbers(t *testing.T) {
 		{newList(2), newList(5, 6, 4), newList(7, 6, 4)},
 		{newList(2), newList(5, 6), newList(7, 6)},
 		{newList(2), newList(5), newList(7)},
-		{newList(), newList(5), newList(5)},
-		{newList(), newList(), newList()},
 	}
 
 	for _, tt := range tests {
