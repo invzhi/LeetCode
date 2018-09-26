@@ -17,33 +17,33 @@ type ListNode struct {
 func mergeTwoLists(l1, l2 *ListNode) *ListNode {
 	l := new(ListNode)
 
-	cur := l
+	n := l
 	for l1 != nil && l2 != nil {
 		switch {
 		case l1.Val < l2.Val:
-			cur.Next = l1
-			cur = cur.Next
+			n.Next = l1
+			n = n.Next
 			l1 = l1.Next
 		case l1.Val > l2.Val:
-			cur.Next = l2
-			cur = cur.Next
+			n.Next = l2
+			n = n.Next
 			l2 = l2.Next
 		default:
-			cur.Next = l1
-			cur = cur.Next
+			n.Next = l1
+			n = n.Next
 			l1 = l1.Next
 
-			cur.Next = l2
-			cur = cur.Next
+			n.Next = l2
+			n = n.Next
 			l2 = l2.Next
 		}
 	}
 
 	if l1 != nil {
-		cur.Next = l1
+		n.Next = l1
 	}
 	if l2 != nil {
-		cur.Next = l2
+		n.Next = l2
 	}
 
 	return l.Next
