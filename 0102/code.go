@@ -34,7 +34,7 @@ func dfs(root *TreeNode, order [][]int, level int) [][]int {
 		return order
 	}
 
-	if level >= len(order) {
+	if level == len(order) {
 		order = append(order, nil)
 	}
 	order[level] = append(order[level], root.Val)
