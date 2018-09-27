@@ -20,21 +20,21 @@ func insertionSortList(head *ListNode) *ListNode {
 		return nil
 	}
 
-	pre := &ListNode{Next: head}
-	for prei, i := head, head.Next; i != nil; i = i.Next {
-		if prei.Val <= i.Val {
-			prei = i
+	l := &ListNode{Next: head}
+	for prev, i := head, head.Next; i != nil; i = i.Next {
+		if prev.Val <= i.Val {
+			prev = i
 			continue
 		}
 
-		j := pre
+		j := l
 		for j.Next.Val <= i.Val {
 			j = j.Next
 		}
-		prei.Next = i.Next
+		prev.Next = i.Next
 		i.Next = j.Next
 		j.Next = i
-		i = prei
+		i = prev
 	}
-	return pre.Next
+	return l.Next
 }
