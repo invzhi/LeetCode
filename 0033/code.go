@@ -41,21 +41,14 @@ func search(nums []int, target int) int {
 }
 
 func findZeroIndex(nums []int) int {
-	var zero int
 	lo, hi := 0, len(nums)-1
-	if nums[lo] <= nums[hi] {
-		return 0
-	}
-	for lo <= hi {
+	for lo < hi {
 		mid := lo + (hi-lo)/2
-		if nums[mid] > nums[mid+1] {
-			zero = mid + 1
-			break
-		} else if nums[mid] >= nums[lo] {
+		if nums[mid] > nums[hi] {
 			lo = mid + 1
-		} else if nums[mid] <= nums[hi] {
-			hi = mid - 1
+		} else {
+			hi = mid
 		}
 	}
-	return zero
+	return lo
 }

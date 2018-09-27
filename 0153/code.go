@@ -16,21 +16,14 @@
 package leetcode
 
 func findMin(nums []int) int {
-	var min int
 	lo, hi := 0, len(nums)-1
-	if nums[lo] <= nums[hi] {
-		return nums[lo]
-	}
-	for lo <= hi {
+	for lo < hi {
 		mid := lo + (hi-lo)/2
-		if nums[mid] > nums[mid+1] {
-			min = nums[mid+1]
-			break
-		} else if nums[mid] >= nums[lo] {
+		if nums[mid] > nums[hi] {
 			lo = mid + 1
-		} else if nums[mid] <= nums[hi] {
-			hi = mid - 1
+		} else {
+			hi = mid
 		}
 	}
-	return min
+	return nums[lo]
 }
