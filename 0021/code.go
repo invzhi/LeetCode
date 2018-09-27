@@ -19,20 +19,11 @@ func mergeTwoLists(l1, l2 *ListNode) *ListNode {
 
 	n := l
 	for l1 != nil && l2 != nil {
-		switch {
-		case l1.Val < l2.Val:
+		if l1.Val <= l2.Val {
 			n.Next = l1
 			n = n.Next
 			l1 = l1.Next
-		case l1.Val > l2.Val:
-			n.Next = l2
-			n = n.Next
-			l2 = l2.Next
-		default:
-			n.Next = l1
-			n = n.Next
-			l1 = l1.Next
-
+		} else {
 			n.Next = l2
 			n = n.Next
 			l2 = l2.Next
