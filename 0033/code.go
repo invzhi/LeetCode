@@ -17,38 +17,26 @@
 package leetcode
 
 func search(nums []int, target int) int {
-	n := len(nums)
-	if n == 0 {
-		return -1
-	}
-
-	zero := findZeroIndex(nums)
-	lo, hi := 0, n-1
+	i := -1
+	lo, hi := 0, len(nums)-1
 	for lo <= hi {
 		mid := lo + (hi-lo)/2
-
-		i := (zero + mid) % n
-		switch {
-		case nums[i] < target:
-			lo = mid + 1
-		case nums[i] > target:
-			hi = mid - 1
-		default:
-			return i
-		}
-	}
-	return -1
-}
-
-func findZeroIndex(nums []int) int {
-	lo, hi := 0, len(nums)-1
-	for lo < hi {
-		mid := lo + (hi-lo)/2
-		if nums[mid] > nums[hi] {
-			lo = mid + 1
+		if nums[mid] < target {
+			if target >= nums[0] && nums[0] > nums[mid] {
+				hi = mid - 1
+			} else {
+				lo = mid + 1
+			}
+		} else if nums[mid] > target {
+			if target < nums[0] && nums[0] <= nums[mid] {
+				lo = mid + 1
+			} else {
+				hi = mid - 1
+			}
 		} else {
-			hi = mid
+			i = mid
+			break
 		}
 	}
-	return lo
+	return i
 }
