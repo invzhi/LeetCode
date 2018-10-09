@@ -15,12 +15,13 @@ package leetcode
 
 func judgeSquareSum(c int) bool {
 	for i := 2; i*i <= c; i++ {
-		var cnt int
 		if c%i == 0 {
+			var cnt int
 			for c%i == 0 {
 				c /= i
 				cnt++
 			}
+
 			if cnt&1 == 1 && i%4 == 3 {
 				return false
 			}
