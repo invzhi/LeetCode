@@ -17,14 +17,15 @@ func checkPerfectNumber(num int) bool {
 		return false
 	}
 
-	var sum int
-	for i := 1; i*i <= num; i++ {
+	var sum, i int
+	for i = 1; i*i < num; i++ {
 		if num%i == 0 {
-			sum += i
-			if i*i != num {
-				sum += num / i
-			}
+			sum += i + num/i
 		}
 	}
+	if i*i == num {
+		sum += i
+	}
+
 	return sum-num == num
 }

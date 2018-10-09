@@ -10,7 +10,12 @@ func TestCheckPerfectNumber(t *testing.T) {
 		{-1, false},
 		{0, false},
 		{1, false},
+		{3, false},
+		{6, true},
 		{28, true},
+		{496, true},
+		{8128, true},
+		{33550336, true},
 	}
 
 	for _, tt := range tests {
