@@ -38,13 +38,9 @@ func combinationSum(candidates []int, target int) [][]int {
 		}
 
 		for i, c := range candidates[index:] {
-			if c > target {
-				continue
+			if c <= target {
+				f(append(combination, c), index+i, target-c)
 			}
-
-			combination = append(combination, c)
-			f(combination, index+i, target-c)
-			combination = combination[:len(combination)-1]
 		}
 	}
 
