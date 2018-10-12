@@ -19,17 +19,17 @@
 package leetcode
 
 func letterCasePermutation(S string) []string {
-	s := []string{S}
+	ss := []string{S}
 	for i := 0; i < len(S); i++ {
 		if S[i] < '0' || S[i] > '9' {
-			for j := len(s) - 1; j >= 0; j-- {
-				b := []byte(s[j])
+			for _, s := range ss {
+				b := []byte(s)
 				letterCase(b, i)
-				s = append(s, string(b))
+				ss = append(ss, string(b))
 			}
 		}
 	}
-	return s
+	return ss
 }
 
 func letterCase(b []byte, i int) {
