@@ -20,19 +20,13 @@
 package leetcode
 
 func subsets(nums []int) [][]int {
-	sets := make([][]int, 0, 1<<uint(len(nums)))
-	set := make([]int, 0, len(nums))
-	return dfs(sets, set, nums)
-}
-
-func dfs(sets [][]int, set, nums []int) [][]int {
-	if len(nums) == 0 {
-		s := make([]int, len(set))
-		copy(s, set)
-		return append(sets, s)
+	sets := make([][]int, 1, 1<<uint(len(nums)))
+	for _, num := range nums {
+		for _, set := range sets {
+			s := make([]int, len(set), len(set)+1)
+			copy(s, set)
+			sets = append(sets, append(s, num))
+		}
 	}
-
-	sets = dfs(sets, set, nums[1:])
-	set = append(set, nums[0])
-	return dfs(sets, set, nums[1:])
+	return sets
 }
