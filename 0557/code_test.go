@@ -7,6 +7,7 @@ func TestReverseWords(t *testing.T) {
 		s string
 		r string
 	}{
+		{" Hello  World! ", " olleH  !dlroW "},
 		{"Let's take LeetCode contest", "s'teL ekat edoCteeL tsetnoc"},
 	}
 

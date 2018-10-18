@@ -12,7 +12,7 @@ package leetcode
 
 func reverseWords(s string) string {
 	b := []byte(s)
-	for i, j := 0, 0; i < len(b); i = j {
+	for i, j := 0, 0; i < len(b); i = j + 1 {
 		for i < len(b) && b[i] == ' ' {
 			i++
 		}
