@@ -9,7 +9,7 @@
 
 package leetcode
 
-func addStrings(num1 string, num2 string) string {
+func addStrings(num1, num2 string) string {
 	var b []byte
 
 	var k byte
