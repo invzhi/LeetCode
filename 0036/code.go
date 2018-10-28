@@ -46,13 +46,13 @@
 package leetcode
 
 func isValidSudoku(board [][]byte) bool {
-	var row, col, box [9][10]bool
+	var row, col, box [9][9]bool
 	for i := 0; i < 9; i++ {
 		for j := 0; j < 9; j++ {
 			if board[i][j] == '.' {
 				continue
 			}
-			cell := board[i][j] - '0'
+			cell := board[i][j] - '1'
 			if row[i][cell] || col[j][cell] || box[i/3*3+j/3][cell] {
 				return false
 			}
