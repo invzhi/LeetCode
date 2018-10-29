@@ -10,6 +10,7 @@ func TestLRUCache(t *testing.T) {
 		{true, 1, 1},
 		{true, 2, 2},
 		{false, 1, 1},
+		{true, 3, 2},
 		{true, 3, 3},
 		{false, 2, -1},
 		{true, 4, 4},
