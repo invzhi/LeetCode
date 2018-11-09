@@ -27,12 +27,14 @@ type keyValue struct {
 	key, value int
 }
 
+// LRUCache implement Least Recently Used (LRU) cache.
 type LRUCache struct {
 	l *list.List
 	m map[int]*list.Element
 	c int
 }
 
+// Constructor creates and initializes a new LRUCache using capacity as its capacity.
 func Constructor(capacity int) LRUCache {
 	return LRUCache{
 		l: list.New(),
@@ -41,6 +43,7 @@ func Constructor(capacity int) LRUCache {
 	}
 }
 
+// Get get the value of the key if the key exists in the cache, otherwise return -1.
 func (c *LRUCache) Get(key int) int {
 	e, ok := c.m[key]
 	if !ok {
@@ -50,6 +53,7 @@ func (c *LRUCache) Get(key int) int {
 	return e.Value.(*keyValue).value
 }
 
+// Put set or insert the value if the key is not already present.
 func (c *LRUCache) Put(key, value int) {
 	e, ok := c.m[key]
 	if ok {
