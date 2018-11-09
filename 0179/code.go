@@ -20,6 +20,7 @@ import (
 	"strings"
 )
 
+// ByOrder implement sort.Interface.
 type ByOrder []string
 
 func (a ByOrder) Len() int {
