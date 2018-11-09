@@ -20,27 +20,12 @@ import (
 	"strings"
 )
 
-// ByOrder implement sort.Interface.
-type ByOrder []string
-
-func (a ByOrder) Len() int {
-	return len(a)
-}
-
-func (a ByOrder) Less(i, j int) bool {
-	return a[j]+a[i] < a[i]+a[j]
-}
-
-func (a ByOrder) Swap(i, j int) {
-	a[i], a[j] = a[j], a[i]
-}
-
 func largestNumber(nums []int) string {
 	ss := make([]string, len(nums))
 	for i, num := range nums {
 		ss[i] = strconv.Itoa(num)
 	}
-	sort.Sort(ByOrder(ss))
+	sort.Slice(ss, func(i, j int) bool { return ss[j]+ss[i] < ss[i]+ss[j] })
 
 	if ss[0] == "0" {
 		return "0"
