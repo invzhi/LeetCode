@@ -16,9 +16,12 @@ func TestMerge(t *testing.T) {
 	}
 
 	for _, tt := range tests {
+		before := make([]Interval, len(tt.before))
+		copy(before, tt.before)
+
 		after := merge(tt.before)
 		if reflect.DeepEqual(after, tt.after) == false {
-			t.Errorf("merge(%v) return %v, want %v", tt.before, after, tt.after)
+			t.Errorf("merge(%v) return %v, want %v", before, after, tt.after)
 		}
 	}
 }

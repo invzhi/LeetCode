@@ -29,14 +29,13 @@ func merge(intervals []Interval) []Interval {
 	sort.Slice(intervals, func(i, j int) bool { return intervals[i].Start < intervals[j].Start })
 
 	var i int
-	merged := []Interval{intervals[0]}
 	for _, interval := range intervals {
-		if merged[i].End < interval.Start {
-			merged = append(merged, interval)
+		if intervals[i].End < interval.Start {
 			i++
-		} else if interval.End > merged[i].End {
-			merged[i].End = interval.End
+			intervals[i] = interval
+		} else if interval.End > intervals[i].End {
+			intervals[i].End = interval.End
 		}
 	}
-	return merged
+	return intervals[:i+1]
 }
