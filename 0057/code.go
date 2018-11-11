@@ -24,10 +24,13 @@ func insert(intervals []Interval, newInterval Interval) []Interval {
 	if len(intervals) == 0 || newInterval.End < intervals[0].Start {
 		return append([]Interval{newInterval}, intervals...)
 	}
-	for i := range intervals {
-		if intervals[i].End < newInterval.Start && (i == len(intervals)-1 || newInterval.End < intervals[i+1].Start) {
-			return append(append(intervals[:i+1:i+1], newInterval), intervals[i+1:]...)
+	for i := 1; i < len(intervals); i++ {
+		if intervals[i-1].End < newInterval.Start && newInterval.End < intervals[i].Start {
+			return append(append(intervals[:i:i], newInterval), intervals[i:]...)
 		}
+	}
+	if intervals[len(intervals)-1].End < newInterval.Start {
+		return append(intervals, newInterval)
 	}
 
 	var i, j int
