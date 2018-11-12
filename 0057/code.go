@@ -21,32 +21,28 @@ type Interval struct {
 }
 
 func insert(intervals []Interval, newInterval Interval) []Interval {
-	if len(intervals) == 0 || newInterval.End < intervals[0].Start {
-		return append([]Interval{newInterval}, intervals...)
-	}
-	for i := 1; i < len(intervals); i++ {
-		if intervals[i-1].End < newInterval.Start && newInterval.End < intervals[i].Start {
-			return append(append(intervals[:i:i], newInterval), intervals[i:]...)
-		}
-	}
-	if intervals[len(intervals)-1].End < newInterval.Start {
-		return append(intervals, newInterval)
-	}
+	for i, interval := range intervals {
+		if newInterval.Start <= interval.End {
+			if newInterval.End < interval.Start {
+				return append(append(intervals[:i:i], newInterval), intervals[i:]...)
+			}
 
-	var i, j int
-	for intervals[i].End < newInterval.Start {
-		i++
-	}
-	if newInterval.Start < intervals[i].Start {
-		intervals[i].Start = newInterval.Start
-	}
-	if newInterval.End > intervals[i].End {
-		intervals[i].End = newInterval.End
-	}
-	for j = i + 1; j < len(intervals) && intervals[j].Start <= newInterval.End; j++ {
-		if intervals[j].End > intervals[i].End {
-			intervals[i].End = intervals[j].End
+			if newInterval.Start < interval.Start {
+				intervals[i].Start = newInterval.Start
+			}
+			if newInterval.End > interval.End {
+				intervals[i].End = newInterval.End
+			}
+
+			j := i + 1
+			for j < len(intervals) && intervals[j].Start <= newInterval.End {
+				j++
+			}
+			if intervals[j-1].End > intervals[i].End {
+				intervals[i].End = intervals[j-1].End
+			}
+			return append(intervals[:i+1], intervals[j:]...)
 		}
 	}
-	return append(intervals[:i+1], intervals[j:]...)
+	return append(intervals, newInterval)
 }
