@@ -16,17 +16,18 @@
 package leetcode
 
 func sortColors(nums []int) {
-	for i, lt, gt := 0, 0, len(nums)-1; i <= gt; {
-		switch nums[i] {
+	zero, two := 0, len(nums)-1
+	for one := 0; one <= two; {
+		switch nums[one] {
 		case 0:
-			nums[lt], nums[i] = nums[i], nums[lt]
-			lt++
-			fallthrough
+			nums[one], nums[zero] = nums[zero], nums[one]
+			zero++
+			one++
 		case 1:
-			i++
+			one++
 		case 2:
-			nums[gt], nums[i] = nums[i], nums[gt]
-			gt--
+			nums[one], nums[two] = nums[two], nums[one]
+			two--
 		}
 	}
 }
