@@ -28,13 +28,14 @@ func oddEvenList(head *ListNode) *ListNode {
 		return nil
 	}
 
-	odd := &ListNode{Next: head.Next}
-	var p, q *ListNode
-	for p, q = head, head.Next; q != nil && q.Next != nil; q = q.Next {
+	even := head.Next
+	p, q := head, head.Next
+	for q != nil && q.Next != nil {
 		p.Next = q.Next
 		p = p.Next
 		q.Next = p.Next
+		q = q.Next
 	}
-	p.Next = odd.Next
+	p.Next = even
 	return head
 }
