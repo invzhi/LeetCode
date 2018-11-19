@@ -14,19 +14,19 @@ func (t *TreeNode) values() []interface{} {
 	vs := []interface{}{t.Val}
 
 	for q := []*TreeNode{t.Left, t.Right}; len(q) > 0; q = q[1:] {
-		if q[0] == nil {
-			vs = append(vs, nil)
-			continue
+		var v interface{}
+		if q[0] != nil {
+			v = q[0].Val
+			q = append(q, q[0].Left, q[0].Right)
 		}
-		vs = append(vs, q[0].Val)
-		q = append(q, q[0].Left, q[0].Right)
+		vs = append(vs, v)
 	}
 
-	i := len(vs) - 1
-	for vs[i] == nil {
+	i := len(vs)
+	for vs[i-1] == nil {
 		i--
 	}
-	return vs[:i+1]
+	return vs[:i]
 }
 
 func newTree(vs ...interface{}) *TreeNode {
@@ -34,10 +34,13 @@ func newTree(vs ...interface{}) *TreeNode {
 		return nil
 	}
 
-	nodes := make([]*TreeNode, len(vs))
+	var root *TreeNode
 	if v, ok := vs[0].(int); ok {
-		nodes[0] = &TreeNode{Val: v}
+		root = &TreeNode{Val: v}
 	}
+
+	nodes := make([]*TreeNode, len(vs))
+	nodes[0] = root
 	for i, j := 0, 1; j < len(vs); i++ {
 		if nodes[i] == nil {
 			continue
@@ -58,5 +61,5 @@ func newTree(vs ...interface{}) *TreeNode {
 
 		j += 2
 	}
-	return nodes[0]
+	return root
 }
