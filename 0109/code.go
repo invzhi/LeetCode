@@ -28,27 +28,27 @@ type TreeNode struct {
 }
 
 func sortedListToBST(head *ListNode) *TreeNode {
-	if head == nil {
-		return nil
-	}
-	if head.Next == nil {
-		return &TreeNode{Val: head.Val}
+	var length int
+	for p := head; p != nil; p = p.Next {
+		length++
 	}
 
-	var prev *ListNode
-	slow, fast := head, head
-	for fast != nil && fast.Next != nil {
-		prev = slow
-		slow = slow.Next
-		fast = fast.Next.Next
-	}
-	lo, hi := head, slow.Next
-	prev.Next = nil
-	slow.Next = nil
+	var f func(int) *TreeNode
+	f = func(n int) *TreeNode {
+		if n == 0 {
+			return nil
+		}
+		n--
+		mid := n / 2
 
-	return &TreeNode{
-		Val:   slow.Val,
-		Left:  sortedListToBST(lo),
-		Right: sortedListToBST(hi),
+		node := new(TreeNode)
+
+		node.Left = f(n - mid)
+		node.Val = head.Val
+		head = head.Next
+		node.Right = f(mid)
+
+		return node
 	}
+	return f(length)
 }
