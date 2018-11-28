@@ -32,10 +32,10 @@ func preorderTraversal(root *TreeNode) []int {
 			p = stack[n]
 			stack = stack[:n]
 		}
+		vals = append(vals, p.Val)
 		if p.Right != nil {
 			stack = append(stack, p.Right)
 		}
-		vals = append(vals, p.Val)
 	}
 
 	return vals
