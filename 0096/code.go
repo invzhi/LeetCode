@@ -16,13 +16,9 @@
 package leetcode
 
 func numTrees(n int) int {
-	nums := make([]int, n+1)
-	nums[0] = 1
-
-	for i := 1; i <= n; i++ {
-		for j := 0; j < i; j++ {
-			nums[i] += nums[j] * nums[i-1-j]
-		}
+	num := 1
+	for i := 0; i < n; i++ {
+		num = num * (4*i + 2) / (i + 2)
 	}
-	return nums[n]
+	return num
 }
