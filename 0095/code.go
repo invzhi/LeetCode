@@ -33,27 +33,43 @@ func generateTrees(n int) []*TreeNode {
 	if n == 0 {
 		return nil
 	}
-	return generate(1, n)
+
+	trees := make([][][]*TreeNode, n-1)
+	for i := range trees {
+		trees[i] = make([][]*TreeNode, n-1-i)
+	}
+	for d := 1; d < n; d++ {
+		for i := 1; i+d <= n; i++ {
+			generate(trees, i, i+d)
+		}
+	}
+	return get(trees, 1, n)
 }
 
-func generate(i, j int) []*TreeNode {
-	if i > j {
-		return []*TreeNode{nil}
-	}
-
-	var trees []*TreeNode
-	for k := i; k <= j; k++ {
-		ll := generate(i, k-1)
-		rr := generate(k+1, j)
+func generate(trees [][][]*TreeNode, left, right int) {
+	var t []*TreeNode
+	for i := left; i <= right; i++ {
+		ll := get(trees, left, i-1)
+		rr := get(trees, i+1, right)
 		for _, l := range ll {
 			for _, r := range rr {
-				trees = append(trees, &TreeNode{
-					Val:   k,
+				t = append(t, &TreeNode{
+					Val:   i,
 					Left:  l,
 					Right: r,
 				})
 			}
 		}
 	}
-	return trees
+	trees[right-left-1][left-1] = t
+}
+
+func get(trees [][][]*TreeNode, left, right int) []*TreeNode {
+	if left > right {
+		return []*TreeNode{nil}
+	}
+	if left == right {
+		return []*TreeNode{&TreeNode{Val: left}}
+	}
+	return trees[right-left-1][left-1]
 }
