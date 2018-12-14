@@ -69,7 +69,7 @@ func get(trees [][][]*TreeNode, left, right int) []*TreeNode {
 		return []*TreeNode{nil}
 	}
 	if left == right {
-		return []*TreeNode{&TreeNode{Val: left}}
+		return []*TreeNode{{Val: left}}
 	}
 	return trees[right-left-1][left-1]
 }
