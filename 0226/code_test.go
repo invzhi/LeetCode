@@ -16,7 +16,7 @@ func TestInvertTree(t *testing.T) {
 	for _, tt := range tests {
 		after := invertTree(newTree(tt.before...))
 		if reflect.DeepEqual(after, tt.after) == false {
-			t.Errorf("invertTree(%v) return %v, want %v", newTree(tt.before), after, tt.after)
+			t.Errorf("invertTree(%v) return %v, want %v", newTree(tt.before...), after, tt.after)
 		}
 	}
 }
