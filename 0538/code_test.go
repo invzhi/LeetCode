@@ -11,6 +11,7 @@ func TestConvertBST(t *testing.T) {
 		after  *TreeNode
 	}{
 		{[]interface{}{5, 2, 13}, newTree(18, 20, 13)},
+		{[]interface{}{4, 2, 6, 1, 3, 5, 7}, newTree(22, 27, 13, 28, 25, 18, 7)},
 	}
 
 	for _, tt := range tests {
