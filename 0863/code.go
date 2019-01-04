@@ -50,9 +50,9 @@ func distanceK(root, target *TreeNode, K int) []int {
 			return -1
 		}
 
-		if K == d+1 {
+		if d+1 == K {
 			vals = append(vals, root.Val)
-		} else if K > d+1 {
+		} else if d+1 < K {
 			vals = down(vals, K-d-2, to)
 		}
 
