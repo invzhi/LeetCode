@@ -34,6 +34,8 @@ func TestDistanceK(t *testing.T) {
 		{newTree(0, nil, 1, 2, 3), 2, 1, []int{1}},
 		{newTree(0, nil, 1, 2, 3), 2, 2, []int{3, 0}},
 		{newTree(0, 1, nil, 3, 2, 4), 2, 1, []int{1}},
+		{newTree(0, 2, 1, nil, nil, 3), 3, 3, []int{2}},
+		{newTree(0, 1, nil, nil, 2, nil, 3, nil, 4), 3, 0, []int{3}},
 		{newTree(0, nil, 1, 2, 3, nil, nil, nil, 4), 2, 1, []int{1}},
 		{newTree(3, 5, 1, 6, 2, 0, 8, nil, nil, 7, 4), 5, 2, []int{7, 4, 1}},
 	}
