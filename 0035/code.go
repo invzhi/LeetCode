@@ -22,16 +22,13 @@
 package leetcode
 
 func searchInsert(nums []int, target int) int {
-	lo, hi := 0, len(nums)-1
-	for lo <= hi {
+	lo, hi := 0, len(nums)
+	for lo < hi {
 		mid := lo + (hi-lo)/2
 		switch {
 		case nums[mid] < target:
 			lo = mid + 1
 		case nums[mid] > target:
-			if lo == hi {
-				return lo
-			}
 			hi = mid
 		default:
 			return mid
