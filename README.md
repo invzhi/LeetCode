@@ -6,3 +6,10 @@
 [![license](https://img.shields.io/github/license/invzhi/LeetCode.svg)](LICENSE)
 
 LeetCode Problems' Solutions
+
+## Anki Deck
+[Anki](https://apps.ankiweb.net/docs/manual.html) is a program which makes remembering things easy by active recall testing and spaced repetition.
+
+![Anki Cards](https://i.imgur.com/HCZyhBO.png)
+
+Download [here](https://ankiweb.net/shared/info/210133905).
