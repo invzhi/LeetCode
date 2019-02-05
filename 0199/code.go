@@ -24,19 +24,20 @@ type TreeNode struct {
 func rightSideView(root *TreeNode) []int {
 	var values []int
 
-	var f func(*TreeNode, int) int
-	f = func(root *TreeNode, depth int) int {
+	var f func(*TreeNode, int)
+	f = func(root *TreeNode, depth int) {
 		if root == nil {
-			return depth
+			return
 		}
 
-		if depth == 0 {
+		if depth == len(values) {
 			values = append(values, root.Val)
-			depth = f(root.Right, 0)
 		} else {
-			depth = f(root.Right, depth-1)
+			values[depth] = root.Val
 		}
-		return f(root.Left, depth) + 1
+
+		f(root.Left, depth+1)
+		f(root.Right, depth+1)
 	}
 	f(root, 0)
 
