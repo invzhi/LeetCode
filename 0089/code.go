@@ -30,11 +30,11 @@ package leetcode
 func grayCode(n int) []int {
 	size := 1 << uint(n)
 
-	codes := make([]int, size)
+	seq := make([]int, size)
 	for bit := 1; bit < size; bit <<= 1 {
 		for i := 0; i < bit; i++ {
-			codes[bit+i] = codes[bit-1-i] | bit
+			seq[bit+i] = seq[bit-1-i] | bit
 		}
 	}
-	return codes
+	return seq
 }
