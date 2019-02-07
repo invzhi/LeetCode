@@ -17,7 +17,7 @@ func TestLetterCombinations(t *testing.T) {
 	for _, tt := range tests {
 		combinations := letterCombinations(tt.digits)
 		if reflect.DeepEqual(combinations, tt.combinations) == false {
-			t.Errorf("letterCombinations(%v) return %v, want %v", tt.digits, combinations, tt.combinations)
+			t.Errorf("letterCombinations(%q) return %q, want %q", tt.digits, combinations, tt.combinations)
 		}
 	}
 }

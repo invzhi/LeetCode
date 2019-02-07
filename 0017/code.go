@@ -15,6 +15,7 @@ func letterCombinations(digits string) []string {
 	if len(digits) == 0 {
 		return nil
 	}
+
 	buttons := []string{"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"}
 
 	var combinations []string
