@@ -19,21 +19,22 @@ func letterCombinations(digits string) []string {
 	buttons := []string{"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"}
 
 	var combinations []string
+	combination := make([]byte, len(digits))
 
-	var f func([]byte)
-	f = func(combination []byte) {
-		n := len(combination)
-		if n == len(digits) {
+	var f func(int)
+	f = func(i int) {
+		if i == len(digits) {
 			combinations = append(combinations, string(combination))
 			return
 		}
 
-		letters := buttons[digits[n]-'2']
-		for i := 0; i < len(letters); i++ {
-			f(append(combination, letters[i]))
+		letters := buttons[digits[i]-'2']
+		for j := 0; j < len(letters); j++ {
+			combination[i] = letters[j]
+			f(i + 1)
 		}
 	}
-	f(nil)
+	f(0)
 
 	return combinations
 }
