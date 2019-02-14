@@ -27,13 +27,32 @@
 package leetcode
 
 func searchMatrix(matrix [][]int, target int) bool {
-	i, j := len(matrix)-1, 0
-	for i >= 0 && j < len(matrix[i]) {
+	if len(matrix) == 0 {
+		return false
+	}
+
+	lo, hi := 0, len(matrix)-1
+	for lo < hi {
+		mid := hi - (hi-lo)/2
 		switch {
-		case matrix[i][j] < target:
-			j++
-		case matrix[i][j] > target:
-			i--
+		case matrix[mid][0] < target:
+			lo = mid
+		case matrix[mid][0] > target:
+			hi = mid - 1
+		default:
+			return true
+		}
+	}
+
+	i := lo
+	lo, hi = 0, len(matrix[i])-1
+	for lo <= hi {
+		mid := lo + (hi-lo)/2
+		switch {
+		case matrix[i][mid] < target:
+			lo = mid + 1
+		case matrix[i][mid] > target:
+			hi = mid - 1
 		default:
 			return true
 		}
