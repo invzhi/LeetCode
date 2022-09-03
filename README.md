@@ -10,6 +10,6 @@ LeetCode Problems' Solutions
 ## Anki Deck
 [Anki](https://apps.ankiweb.net/docs/manual.html) is a program which makes remembering things easy by active recall testing and spaced repetition.
 
-![Anki Cards](https://i.imgur.com/HCZyhBO.png)
+You could use [ankit](https://github.com/invzhi/ankit) to make your own Ankit Deck. Or just use my Ankit Deck below.
 
-Download [here](https://ankiweb.net/shared/info/210133905).
+[![Anki Cards](https://i.imgur.com/HCZyhBO.png)](https://ankiweb.net/shared/info/210133905)
